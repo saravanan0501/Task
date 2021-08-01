@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+           <argument name="commands" xsi:type="array">
+                <item name="taskAddItem" xsi:type="object">Task\Listing\Console\Command\AddItem</item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="Task\Listing\Api\Data\ItemInterface" type="Task\Listing\Model\Item"/>
+    <preference for="Task\Listing\Api\ItemRepositoryInterface" type="Task\Listing\Model\ItemRepository"/>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="task_items_grid_data_source" xsi:type="string">Task\Listing\Model\ResourceModel\Item\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="base_tax_amount" xsi:type="string">sales_order.base_tax_amount</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="TaskLogger" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="name" xsi:type="string">main</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="system" xsi:type="object">Magento\Framework\Logger\Handler\System</item>
+                <item name="debug" xsi:type="object">Task\Listing\Model\DebugHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Task\Listing\Observer\Logger">
+        <arguments>
+            <argument name="logger" xsi:type="object">TaskLogger</argument>
+        </arguments>
+    </type>
+    <type name="Task\Listing\Console\Command\AddItem">
+        <plugin name="console_logging" type="Task\Listing\Plugin\Logger"/>
+    </type>
+</config>

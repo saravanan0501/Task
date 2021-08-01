@@ -1,0 +1,21 @@
+<?php
+/** @var \Task\Listing\Block\Hello $block */
+?>
+<?php echo $block->getLabel(); ?>
+<?php foreach ($block->getItems() as $item): ?>
+<p>
+<?php echo $item->getSKU(); ?>
+</p>
+<p>
+<?php echo $item->getVendorNumber(); ?>
+</p>
+<p>
+<?php echo $item->getVendorNote(); ?>
+</p>
+<p>
+<?php echo $item->getCreatedAt(); ?>
+</p>
+<p>
+<?php echo $item->getUpdateddAt(); ?>
+</p>
+<?php endforeach; ?>
