@@ -19,5 +19,13 @@
                 </field>
             </group>
         </section>
+        <section id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="store_information" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="merchant_vat_number1" translate="label" type="text" sortOrder="62" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Product Disclaimer</label>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+            </group>
+        </section>
     </system>
 </config>
